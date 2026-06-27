@@ -7,7 +7,9 @@ Your portfolio is a single self-contained website. This file explains how to upd
 - **Local folder:** `C:\Claude\ajaykchauhan73.github.io\`
 - **Main files:**
   - `index.html` — the entire website (text, design, everything)
-  - `ajay.jpg` — your profile photo (used in the hero + social share preview)
+  - `ajay.jpg` — your profile photo (used in the hero)
+  - `og-image.jpg` — the link-preview share card (shown when you share your link)
+  - `make_og.py` — script that regenerates the share card
 
 > After any change, the live site updates automatically in about **1 minute**.
 > Then hard-refresh your browser with **Ctrl + Shift + R** to see it (clears the cache).
@@ -30,6 +32,40 @@ The website always loads a file named **`ajay.jpg`**. To change your picture, ju
 4. Wait ~1 minute, then hard-refresh the site (Ctrl + Shift + R).
 
 **Tip:** A square-ish photo looks best (it's cropped into a circle). Keep it under ~1 MB if possible.
+
+---
+
+## 1b. Update the link-preview share card
+
+The **share card** (`og-image.jpg`) is the thumbnail people see when you paste your
+portfolio link on LinkedIn, WhatsApp, Slack, etc. It shows your name, title, photo,
+and skills on a branded background.
+
+It is generated automatically by `make_og.py` (it uses your current `ajay.jpg`).
+**Regenerate it whenever you change your photo, title, or name:**
+
+1. Make sure `ajay.jpg` is up to date (see section 1).
+2. Run the generator and publish:
+   ```powershell
+   cd C:\Claude\ajaykchauhan73.github.io
+   python make_og.py
+   git add -A
+   git commit -m "Update share card"
+   git push
+   ```
+
+**First-time setup only** (if `python make_og.py` errors with "No module named PIL"):
+```powershell
+python -m pip install Pillow
+```
+
+### Make social sites show the NEW card
+Social platforms cache link previews. After updating, force a refresh:
+- **LinkedIn:** https://www.linkedin.com/post-inspector/ -> paste your URL -> Inspect
+- **Facebook / WhatsApp:** https://developers.facebook.com/tools/debug/ -> paste URL -> Scrape Again
+
+To tweak the text/skills on the card, edit `make_og.py` (the chips, name, and role
+are near the bottom), then re-run the steps above.
 
 ---
 
