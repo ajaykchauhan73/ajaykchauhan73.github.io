@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ajay Kumar Chauhan — Backend Software Engineer</title>
+<meta name="description" content="Ajay Kumar Chauhan — Backend Software Engineer specializing in Java, Spring Boot, and high-traffic microservices." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0b0f17;
+    --bg-soft: #111726;
+    --bg-card: #141b2d;
+    --border: #1f2940;
+    --text: #e6ecf7;
+    --text-dim: #9aa6bd;
+    --accent: #5b8cff;
+    --accent-2: #22d3ee;
+    --accent-grad: linear-gradient(135deg, #5b8cff 0%, #22d3ee 100%);
+    --shadow: 0 18px 50px -20px rgba(0,0,0,.7);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(700px circle at 12% 8%, rgba(91,140,255,.12), transparent 45%),
+      radial-gradient(700px circle at 88% 12%, rgba(34,211,238,.10), transparent 45%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .accent-text {
+    background: var(--accent-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(11,15,23,.72);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 800; font-size: 1.05rem; letter-spacing: .5px; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { color: var(--text-dim); font-size: .92rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+  /* HERO */
+  header.hero { padding: 96px 0 72px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border: 1px solid var(--border);
+    border-radius: 999px; background: var(--bg-soft);
+    font-size: .82rem; color: var(--text-dim); margin-bottom: 24px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,.18); }
+  .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 800; line-height: 1.08; letter-spacing: -1.5px; }
+  .hero .role { font-size: clamp(1.1rem, 2.4vw, 1.5rem); color: var(--text-dim); margin-top: 14px; font-weight: 500; }
+  .hero p.lead { max-width: 640px; margin-top: 22px; color: var(--text-dim); font-size: 1.05rem; }
+  .cta { display: flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; border-radius: 10px; font-weight: 600; font-size: .95rem;
+    transition: transform .15s, box-shadow .2s, background .2s;
+  }
+  .btn-primary { background: var(--accent-grad); color: #05101f; box-shadow: 0 10px 30px -10px rgba(91,140,255,.6); }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-ghost { border: 1px solid var(--border); color: var(--text); background: var(--bg-soft); }
+  .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .stats { display: flex; gap: 40px; margin-top: 56px; flex-wrap: wrap; }
+  .stat .num { font-size: 2rem; font-weight: 800; }
+  .stat .lbl { color: var(--text-dim); font-size: .85rem; }
+
+  /* SECTIONS */
+  section { padding: 72px 0; }
+  .sec-head { margin-bottom: 44px; }
+  .sec-head .kicker { color: var(--accent); font-size: .85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+  .sec-head h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 800; letter-spacing: -.5px; margin-top: 8px; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: start; }
+  .about-grid p { color: var(--text-dim); margin-bottom: 16px; }
+  .info-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 26px; box-shadow: var(--shadow); }
+  .info-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: .92rem; }
+  .info-row:last-child { border-bottom: none; }
+  .info-row .k { color: var(--text-dim); }
+  .info-row .v { font-weight: 600; }
+
+  /* TIMELINE / EXPERIENCE */
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+  .exp { position: relative; margin-bottom: 40px; }
+  .exp::before {
+    content: ""; position: absolute; left: -30px; top: 6px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--bg); border: 3px solid var(--accent);
+    box-shadow: 0 0 0 4px rgba(91,140,255,.15);
+  }
+  .exp .top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; align-items: baseline; }
+  .exp h3 { font-size: 1.25rem; font-weight: 700; }
+  .exp .company { color: var(--accent-2); font-weight: 600; }
+  .exp .meta { color: var(--text-dim); font-size: .88rem; }
+  .exp ul { list-style: none; margin-top: 16px; display: grid; gap: 10px; }
+  .exp ul li { position: relative; padding-left: 22px; color: var(--text-dim); font-size: .96rem; }
+  .exp ul li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); }
+
+  /* PROJECTS */
+  .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+  .proj {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 28px; transition: transform .2s, border-color .2s; box-shadow: var(--shadow);
+  }
+  .proj:hover { transform: translateY(-6px); border-color: var(--accent); }
+  .proj .icon { font-size: 1.6rem; }
+  .proj h3 { font-size: 1.2rem; font-weight: 700; margin: 14px 0 8px; }
+  .proj p { color: var(--text-dim); font-size: .94rem; margin-bottom: 18px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { font-size: .76rem; padding: 5px 11px; border-radius: 7px; background: rgba(91,140,255,.1); color: #a9c2ff; border: 1px solid rgba(91,140,255,.25); }
+
+  /* SKILLS */
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+  .skill-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+  .skill-card h4 { font-size: .95rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .skill-card h4 .ic { color: var(--accent); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-size: .82rem; padding: 6px 12px; border-radius: 8px; background: var(--bg-soft); border: 1px solid var(--border); color: var(--text-dim); transition: .2s; }
+  .chip:hover { color: var(--text); border-color: var(--accent); }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .edu { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 26px; }
+  .edu .yr { color: var(--accent); font-weight: 600; font-size: .85rem; }
+  .edu h3 { font-size: 1.1rem; margin: 8px 0 4px; }
+  .edu .deg { color: var(--text-dim); font-size: .92rem; }
+  .edu .loc { color: var(--text-dim); font-size: .82rem; margin-top: 6px; }
+
+  /* CONTACT */
+  .contact { text-align: center; }
+  .contact h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; }
+  .contact p { color: var(--text-dim); max-width: 520px; margin: 18px auto 32px; }
+  .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer { border-top: 1px solid var(--border); padding: 30px 0; text-align: center; color: var(--text-dim); font-size: .85rem; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.show { opacity: 1; transform: none; }
+
+  @media (max-width: 760px) {
+    .nav-links { position: fixed; inset: 64px 0 auto 0; flex-direction: column; gap: 0; background: var(--bg-soft); border-bottom: 1px solid var(--border); transform: translateY(-120%); transition: transform .3s; padding: 8px 0; }
+    .nav-links.open { transform: translateY(0); }
+    .nav-links a { padding: 14px 24px; }
+    .nav-toggle { display: block; }
+    .about-grid, .edu-grid { grid-template-columns: 1fr; }
+    .stats { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#home" class="logo">Ajay<span>.</span>Chauhan</a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <div class="nav-links" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="wrap">
+    <div class="badge"><span class="dot"></span> Available for backend &amp; full-stack roles</div>
+    <h1>Hi, I'm <span class="accent-text">Ajay Kumar Chauhan</span></h1>
+    <div class="role">Backend Software Engineer — Java · Spring Boot · Microservices</div>
+    <p class="lead">I build and operate high-traffic Java microservices serving millions of users. Specialized in scalable REST APIs, payment integrations, authentication systems, and database performance optimization.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#contact">Get in touch →</a>
+      <a class="btn btn-ghost" href="https://github.com/ajaykchauhan73" target="_blank" rel="noopener">View GitHub</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num accent-text">2+</div><div class="lbl">Years experience</div></div>
+      <div class="stat"><div class="num accent-text">30+</div><div class="lbl">REST APIs shipped</div></div>
+      <div class="stat"><div class="num accent-text">99%+</div><div class="lbl">Service uptime</div></div>
+      <div class="stat"><div class="num accent-text">Millions</div><div class="lbl">Users served</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap reveal">
+    <div class="sec-head"><div class="kicker">01 — About</div><h2>A bit about me</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>I'm a Backend Software Engineer with <strong>2+ years</strong> of experience building and operating high-traffic Java microservices at <strong>Octro Inc.</strong>, a leading online gaming platform serving millions of active users.</p>
+        <p>I'm proficient in <strong>Core Java, Spring Boot, Hibernate/JPA, and RESTful API design</strong>, with hands-on delivery of a payment gateway integration and an OTP-based authentication system.</p>
+        <p>My strengths lie in live-site incident resolution, database performance optimization, and cross-team collaboration in agile environments. I also enjoy full-stack and algorithmic side projects — from mining-compliance platforms to automated trading bots.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-row"><span class="k">Location</span><span class="v">Noida, UP, India</span></div>
+        <div class="info-row"><span class="k">Role</span><span class="v">Backend Engineer</span></div>
+        <div class="info-row"><span class="k">Focus</span><span class="v">Java · Spring Boot</span></div>
+        <div class="info-row"><span class="k">Experience</span><span class="v">2+ Years</span></div>
+        <div class="info-row"><span class="k">Email</span><span class="v">ajaykchauhan73</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" style="background:var(--bg-soft);border-block:1px solid var(--border);">
+  <div class="wrap reveal">
+    <div class="sec-head"><div class="kicker">02 — Experience</div><h2>Where I've worked</h2></div>
+    <div class="timeline">
+      <div class="exp">
+        <div class="top">
+          <div><h3>Software Engineer <span style="color:var(--text-dim);font-weight:500">(Backend / Java)</span></h3><div class="company">Octro Inc.</div></div>
+          <div class="meta">Dec 2023 – Present · Noida, UP</div>
+        </div>
+        <ul>
+          <li>Designed, developed, tested, and deployed Java backend microservices using Spring Boot, Spring MVC, JDBC, Hibernate/JPA, and RESTful APIs — serving millions of active gaming users.</li>
+          <li>Implemented a secure Account Recovery &amp; Password Reset module using OTP-based authentication with time-bound expiry, retry limits, and validation logic.</li>
+          <li>Developed 10+ REST APIs for user validation, OTP generation, verification workflows, and email notifications.</li>
+          <li>Integrated a secure in-app payment gateway enabling seamless purchases — with transaction validation, error handling, and reliable confirmation for high-volume transactions.</li>
+          <li>Optimized database interactions via indexing, query tuning, and transaction management — reducing average query response time by ~30–40%.</li>
+          <li>Resolved 20+ live-site production incidents through root cause analysis, maintaining 99%+ service uptime.</li>
+          <li>Collaborated with Product, QA, DevOps, and dependent service teams across sprint cycles to deliver stable releases.</li>
+        </ul>
+      </div>
+      <div class="exp">
+        <div class="top">
+          <div><h3>Backend / Full-Stack Java Developer</h3><div class="company">MineMind — Freelance</div></div>
+          <div class="meta">Aug 2025 – Jan 2026 · Remote</div>
+        </div>
+        <ul>
+          <li>Built the backend for MineMind (minemind.in), a web platform for mining operations and regulatory compliance management.</li>
+          <li>Designed Core Java business logic and rule engines for multiple mine types — iron ore, copper, and bauxite.</li>
+          <li>Implemented compliance and regulatory rule modules covering operational standards and reporting requirements for mine owners.</li>
+          <li>Developed user &amp; access management features — add/edit user, profile management, and mine-to-user allocation with backend-driven logic.</li>
+          <li>Designed and delivered 20+ REST APIs with strong validation, consistency, and performance.</li>
+          <li>Contributed to the frontend using Angular &amp; TypeScript for administrative modules.</li>
+          <li>Deployed and managed production environments on AWS (EC2) — instance setup, deployment, and server maintenance.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap reveal">
+    <div class="sec-head"><div class="kicker">03 — Projects</div><h2>Things I've built</h2></div>
+    <div class="proj-grid">
+      <div class="proj">
+        <div class="icon">📈</div>
+        <h3>Multi-Timeframe Algorithmic Trading Bot</h3>
+        <p>An automated trading system with a multi-timeframe consensus engine correlating market data across M5, H1, and H4 charts. Uses a weighted voting algorithm over candlestick patterns, support/resistance, and indicators (RSI, MACD), with ATR-based risk management and a multi-threaded, low-latency architecture across Crypto, Forex, and Commodities.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">MetaTrader 5</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">TA-Lib</span><span class="tag">Multi-threading</span>
+        </div>
+      </div>
+      <div class="proj">
+        <div class="icon">🥛</div>
+        <h3>Dairy Manager</h3>
+        <p>A full-stack business automation app with a layered Spring Boot backend. Implements JDBC &amp; Hibernate/JPA modules for transactional data and pricing logic, configurable pricing engines based on fat, SNF, quality, and quantity, plus REST APIs for user management, configuration, reporting, and admin operations with robust exception handling.</p>
+        <div class="tags">
+          <span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">JDBC</span><span class="tag">Hibernate</span><span class="tag">REST APIs</span>
+        </div>
+      </div>
+      <div class="proj">
+        <div class="icon">⛏️</div>
+        <h3>MineMind — Compliance Platform</h3>
+        <p>A web platform for mining operations and regulatory compliance management. Core Java rule engines handle multiple mine types (iron ore, copper, bauxite) and mandated compliance modules, with full user/access management, mine-to-user allocation, and 20+ REST APIs. Deployed on AWS EC2 with an Angular admin frontend.</p>
+        <div class="tags">
+          <span class="tag">Core Java</span><span class="tag">Spring Boot</span><span class="tag">Angular</span><span class="tag">AWS EC2</span><span class="tag">REST APIs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--bg-soft);border-block:1px solid var(--border);">
+  <div class="wrap reveal">
+    <div class="sec-head"><div class="kicker">04 — Skills</div><h2>My technical toolkit</h2></div>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <h4><span class="ic">⟨/⟩</span> Languages</h4>
+        <div class="chips"><span class="chip">Java</span><span class="chip">Python</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="ic">☕</span> Java &amp; Backend</h4>
+        <div class="chips"><span class="chip">Core Java</span><span class="chip">Java 8/11/17</span><span class="chip">Spring Boot</span><span class="chip">Spring MVC</span><span class="chip">Spring Data JPA</span><span class="chip">Hibernate</span><span class="chip">JDBC</span><span class="chip">ZooKeeper</span><span class="chip">RabbitMQ</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="ic">🔌</span> API &amp; Services</h4>
+        <div class="chips"><span class="chip">RESTful API Design</span><span class="chip">Microservices</span><span class="chip">JSON</span><span class="chip">HTTP/HTTPS</span><span class="chip">API Versioning</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="ic">🗄️</span> Databases</h4>
+        <div class="chips"><span class="chip">MySQL</span><span class="chip">RDB Design</span><span class="chip">Indexing</span><span class="chip">Query Optimization</span><span class="chip">Transactions</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="ic">☁️</span> Cloud &amp; DevOps</h4>
+        <div class="chips"><span class="chip">AWS (EC2)</span><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Docker</span><span class="chip">Linux</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="ic">🧪</span> Testing</h4>
+        <div class="chips"><span class="chip">JUnit</span><span class="chip">Mockito</span><span class="chip">Unit Testing</span><span class="chip">Integration Testing</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="ic">🔐</span> Security &amp; Auth</h4>
+        <div class="chips"><span class="chip">OTP Authentication</span><span class="chip">Password Encryption</span><span class="chip">Secure API Design</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="ic">🛠️</span> Tools &amp; Platforms</h4>
+        <div class="chips"><span class="chip">IntelliJ IDEA</span><span class="chip">Postman</span><span class="chip">Eclipse</span><span class="chip">Angular (basic)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap reveal">
+    <div class="sec-head"><div class="kicker">05 — Education</div><h2>Academic background</h2></div>
+    <div class="edu-grid">
+      <div class="edu">
+        <div class="yr">2020 – 2022</div>
+        <h3>Deen Dayal Upadhyaya Gorakhpur University</h3>
+        <div class="deg">Master of Science (M.Sc.) — Electronics</div>
+        <div class="loc">📍 Gorakhpur, India</div>
+      </div>
+      <div class="edu">
+        <div class="yr">2017 – 2020</div>
+        <h3>Maharana Pratap Post Graduate College</h3>
+        <div class="deg">Bachelor of Science (B.Sc.) — Physics &amp; Electronics</div>
+        <div class="loc">📍 Gorakhpur, India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:var(--bg-soft);border-top:1px solid var(--border);">
+  <div class="wrap reveal contact">
+    <div class="kicker" style="color:var(--accent);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.85rem;">06 — Contact</div>
+    <h2>Let's work together</h2>
+    <p>I'm open to backend and full-stack engineering opportunities. Whether you have a question or just want to say hi, my inbox is always open.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:ajaykchauhan73@gmail.com">✉️ ajaykchauhan73@gmail.com</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/ajaykumarchauhan970" target="_blank" rel="noopener">in/ LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/ajaykchauhan73" target="_blank" rel="noopener">⌘ GitHub</a>
+      <a class="btn btn-ghost" href="tel:+919341645763">📞 +91-9341645763</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> Ajay Kumar Chauhan · Built with care · Noida, India</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // close mobile menu on link click
+  document.querySelectorAll('#navlinks a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open'))
+  );
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
